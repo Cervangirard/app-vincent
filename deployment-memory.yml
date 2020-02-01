@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memory
+  labels:
+    app: memory-deployment
+spec:
+  selector:
+    matchLabels:
+      app: memory-app
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: memory-app
+        tier: frontend
+    spec:
+      containers:
+        - name: appmemory
+          image: thinkr/memory:latest
+          ports:
+            - containerPort: 3838
+          resources:
+            requests:
+              memory: "500Mi"
